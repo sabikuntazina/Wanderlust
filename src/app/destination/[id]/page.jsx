@@ -1,13 +1,28 @@
+import BookingCard from '@/components/BookingCard';
 import DeleteModal from '@/components/DeleteModal';
 import EditModal from '@/components/EditModal';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
 const DestinationDetailsPage = async({params}) => {
   const {id} = await params;
-  console.log(id);
-  const res =await fetch(`http://localhost:5000/destination/${id}`);
+  // console.log(id);
+  const {token}= await auth.api.getToken({
+    headers: await headers()
+  })
+  console.log(token)
+  const res =await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`,
+    {
+      headers:{
+        authorization: `Bearer ${token}`
+       
+      }
+    }
+  );
   const data=await res.json();
+  // console.log(data)
 
   return (
     <div>
@@ -37,6 +52,7 @@ const DestinationDetailsPage = async({params}) => {
       </p>
       
     </div>
+    <BookingCard destination={data}></BookingCard>
     </div>
  
   </div>

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 const DeleteModal = ({data}) => {
   const {_id} = data;
   const handleDelete=async()=>{
-       const res= await fetch(`http://localhost:5000/destination/${_id}` , {
+       const res= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}` , {
       method: 'DELETE',
       headers: {
         'Content-type' : 'application/json'
@@ -14,7 +14,7 @@ const DeleteModal = ({data}) => {
   
     const data= await res.json();
     redirect('/destination')
-    console.log(data)
+    // console.log(data)
 
   };
   

@@ -2,9 +2,10 @@
 import Link from 'next/link';
 import React from 'react';
 import { Icon } from "@iconify/react";
-import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
+import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
 import { authClient } from '@/lib/auth-client';
 import { redirect } from "next/navigation";
+import { FcGoogle } from 'react-icons/fc';
 
 const SignUpPage = () => {
 
@@ -32,6 +33,11 @@ console.log(error, "error")
       alert("Error");
     }
   };
+    const handleGoogleSignin = async () => {
+      await authClient.signIn.social({
+        provider: "google",
+      });
+    };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -99,14 +105,14 @@ console.log(error, "error")
             </Button>
           </div>
         </Form>
-        {/* <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-3">
             <Separator/>
            <div className="whitespace-nowrap"> Or sign up with </div>
               <Separator/>
             </div>
         <div>
             <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}><FcGoogle /> Sign in with Google</Button>
-        </div> */}
+        </div>
       </Card>
     </div>
   );

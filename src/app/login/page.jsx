@@ -25,9 +25,11 @@ const LoginPage = () => {
       email: user.email,
       password: user.password,
     });
-
+console.log(data, "Data")
+console.log(error, "error")
 
     if (data) {
+      alert("Login successfull")
       redirect('/')
     }
 
@@ -37,11 +39,11 @@ const LoginPage = () => {
     }
   };
 
-  // const handleGoogleSignin = async () => {
-  //   await authClient.signIn.social({
-  //     provider: "google",
-  //   });
-  // };
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -98,7 +100,7 @@ const LoginPage = () => {
           </div>
         </Form>
 
-        {/* <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-3">
           <Separator />
           <div className="whitespace-nowrap"> Or sign up with </div>
           <Separator />
@@ -111,7 +113,7 @@ const LoginPage = () => {
           >
             <FcGoogle /> Sign in with Google
           </Button>
-        </div> */}
+        </div>
       </Card>
     </div>
   );

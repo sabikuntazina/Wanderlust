@@ -22,9 +22,9 @@ const EditModal = ({data}) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
-    console.log(destination);
+    // console.log(destination);
 
-     const res= await fetch(`http://localhost:5000/destination/${_id}` , {
+     const res= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}` , {
       method: 'PATCH',
       headers: {
         'Content-type' : 'application/json'
@@ -32,7 +32,7 @@ const EditModal = ({data}) => {
       body : JSON.stringify(destination)
     })
     const data= await res.json();
-    console.log(data)
+    // console.log(data)
   //     if(data.modifiedCount>0){
   //   revalidatePath(`destination/${data._id}`)
   //   redirect(`destination/${data._id}`)
